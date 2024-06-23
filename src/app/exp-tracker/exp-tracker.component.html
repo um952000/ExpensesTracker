@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Expenses Tracker App</h1>
+  <div class="section1">
+    <input placeholder="Enter Amount to add to Current Amount" type="text"
+      [(ngModel)]="totalAmount" />
+    <button (click)="addIncome()">Add Income</button>
+  </div>
+
+  <!-- Create Section -->
+  <div class="CreateSection">
+    <input placeholder="Enter Expense Description" type="text"
+      [(ngModel)]="expenseTitle" />
+    <input placeholder="Enter Expense Amount" type="text"
+      [(ngModel)]="expenseAmount" />
+    <input placeholder="Enter the date" type="date" [(ngModel)]="expenseDate" />
+    <select [(ngModel)]="selectedCategory">
+      <option value disabled selected>Select Category</option>
+      <option *ngFor="let category of categories"
+        [value]="category">{{category}}</option>
+    </select>
+    <button (click)="createExpense()">Create Expense</button>
+  </div>
+
+  <!-- Show Section -->
+  <div class="ShowSection">
+    <h2>Expenses List || Your Current Amount : ${{remAmount}} </h2>
+    <h2>Your Total Expenses : ${{totalExpenses}}</h2>
+    <div class="expense-list">
+      <ol>
+        <li *ngFor="let expense of allExpenses; let i = index">
+          <div class="expense-item">
+            <span>ID: {{ expense.id }}</span>
+            <span>Description: {{ expense.title }}</span>
+            <span>Expense Amount: {{ expense.expenseAmount }}</span>
+            <span>Date: {{ expense.date | date: 'shortDate' }}</span>
+            <span>Category: {{ expense.category }}</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
